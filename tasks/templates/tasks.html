@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block content%}
+<h1>Tareas completadas</h1>
+<ul>
+    {% for task in tasksCompleted%}
+    <a href="{% url 'task_detail' task.id%}">
+        <li>{{task.title}}</li>
+    </a>
+    <p>{{task.description}}</p>
+    <p>{{task.user.username}}</p>
+    {%endfor%}
+</ul>
+<h1>Tareas pendientes</h1>
+<ul>
+    {% for task in tasks%}
+    <a href="{% url 'task_detail' task.id%}">
+        <li>{{task.title}}</li>
+    </a>
+    <p>{{task.description}}</p>
+    <p>{{task.user.username}}</p>
+    {%endfor%}
+</ul>
+{%endblock%}

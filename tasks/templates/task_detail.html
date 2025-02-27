@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block content%}
+<h1>Detalles de la tarea: {{task.title}} que está en {%if task.datecompleted == null %}PENDIENTE{%else%}COMPLETADA{%endif%}</h1>
+<h3>{{error}}</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Actualizar</button>
+</form>
+
+{%if task.datecompleted == null %}
+<form method="POST" action="{% url 'completeTask' task.id%}">
+    {% csrf_token %}
+    <button>Completar</button>
+</form>
+{%endif%}
+
+<form action="{% url 'deleteTask' task.id%}" method="POST">
+    {% csrf_token %}
+    <button>Eliminar</button>
+</form>
+{%endblock%}
